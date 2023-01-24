@@ -9,28 +9,28 @@ Feature: login functionality
     When user enters username and password
     And user click on signIn button
     Then user successfully login
-    And browser get closed
+ 
 
   @smoke
-  Scenario: check login is successful2
+  Scenario: check login is successful by first param
     When user enters "raki.hasan" and "Abc!234"
     And user click on signIn button
     Then user successfully login
-    And browser get closed
+    
 
   @sanity
-  Scenario: check login is successful2
+  Scenario: check login is successful by second param
     When user enters "raki.hasan2" and "Abc!23487"
     And user click on signIn button
     Then user successfully login
-    And browser get closed
+
 
   @ddt
-  Scenario Outline: check login is successful2
+  Scenario Outline: check login is successful by ddt
     When user enters "<username>" and "<password>"
     And user click on signIn button
     Then user successfully login
-    And browser get closed
+   
 
     Examples: 
       | username       | password   |

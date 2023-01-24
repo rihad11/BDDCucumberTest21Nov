@@ -23,11 +23,22 @@ public class LoginPage{
 	@FindBy(id="pass")
 	WebElement passfbElement;
 	
-	public void doLogin(String user, String pass) {
+	public void doLogin(String user, String pass) throws InterruptedException {
 		emailfbElement.sendKeys(user);
+		Thread.sleep(3000);
 		passfbElement.sendKeys(pass);
+		Thread.sleep(3000);
 		//click
 	}
+	
+	public void doLogin() throws InterruptedException {
+		emailfbElement.sendKeys("expertautomation");
+		Thread.sleep(1000);
+		passfbElement.sendKeys("Xyz!234878");
+		Thread.sleep(1000);
+		//click
+	}
+	
 	
 	public void click() {
 		System.out.println("click action");

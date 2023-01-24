@@ -17,10 +17,10 @@ import pageObjects.BaseClass;
 import pageObjects.LoginPage;
 
 public class StepDef {
-	
+
 	public static WebDriver driver;
-	LoginPage lPage=new LoginPage(driver);
-	
+	LoginPage lPage = new LoginPage(driver);
+
 	@Before
 	public void openBrowser() {
 		driver = new ChromeDriver();
@@ -28,16 +28,10 @@ public class StepDef {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 	}
 
-	@After
-	public void quitBrowser() {
-		if (driver != null)
-			driver.quit();
-	}
-	
-	
-	
-	
-	
+	/*
+	 * @After public void quitBrowser() { if (driver != null) driver.close(); }
+	 */
+
 	@Given("user in login page")
 	public void user_in_login_page() {
 		
@@ -46,21 +40,20 @@ public class StepDef {
 	}
 
 	@When("user enters username and password")
-	public void user_enters_username_and_password() {
+	public void user_enters_username_and_password() throws InterruptedException {
+
+		driver.findElement(By.id("email")).sendKeys("expertautomation");
+		System.out.println("user enters username");
+		driver.findElement(By.id("pass")).sendKeys("Xyz!234878");
+		System.out.println("user enters password");
 		
 		
-		  driver.findElement(By.id("email")).sendKeys("expertautomation");
-		  System.out.println("user enters username");
-		  driver.findElement(By.id("pass")).sendKeys("Xyz!234878");
-		  System.out.println("user enters password");
-		 
-		
-		
+
 	}
 
 	@When("user enters {string} and {string}")
-	public void user_enters_and_password(String email, String pass) {
-		
+	public void user_enters_and_password(String email, String pass) throws InterruptedException {
+
 		lPage.doLogin(email, pass);
 		/*
 		 * driver.findElement(By.id("email")).sendKeys(email);
@@ -80,13 +73,6 @@ public class StepDef {
 	public void user_successfully_login() {
 		Assert.assertEquals("suucessful login", "Facebook - log in or sign up", driver.getTitle());
 	}
-	
-
-	@And("browser get closed")
-	public void browser_get_closed() {
-	 //   driver.close();
-	}
-
 
 
 
